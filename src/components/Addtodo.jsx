@@ -1,14 +1,17 @@
 import { useRef } from "react";
 import { MdOutlineAddCard } from "react-icons/md";
-function Apptodo({ onNew }) {
+import { TodoItemsContext } from "../store/Item_store.jsx";
+import { useContext } from "react";
+function Apptodo() {
   let refName = useRef();
   let refDate = useRef();
+  const { addNew } = useContext(TodoItemsContext);
 
   const buttonClick = (event) => {
     event.preventDefault();
     let newName = refName.current.value;
     let newDate = refDate.current.value;
-    onNew(newName, newDate);
+    addNew(newName, newDate);
     refName.current.value = "";
     refDate.current.value = "";
   };
